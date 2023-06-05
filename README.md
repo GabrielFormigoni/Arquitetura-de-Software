@@ -8,6 +8,6 @@
 - PEDRO IVO SANTANA MELO
 
 ## Trabalho final da disciplina: Aplicação de recomendação de filmes e séries em streaming
-Software para recomendação de series e filmes para os usuários, baseado em um conjuto de fatores fornecidos pelos mesmo.
+Software para recomendação de series e filmes para os usuários, baseado em um conjuto de fatores fornecidos pelos mesmos.
 
 
