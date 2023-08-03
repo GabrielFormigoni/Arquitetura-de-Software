@@ -20,12 +20,29 @@ export default {
     await this.searchMovies()
   },
   fetchDelay: 2000,
+  head() {
+    return {
+      title: 'Movie App - Latest Movies Info',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Movie App - Latest Movies Info',
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: 'movie, movies, latest movies, latest movies info',
+        },
+      ],
+    }
+  },
   methods: {
     async getMovies() {
       const data = await axios.get(
         'https://api.themoviedb.org/3/movie/now_playing?api_key=d34a122b23be14518dbf126735740a98&language=en-US&page=1'
       )
-
+      this.movies = []
       const response = await data.data.results
 
       response.forEach((movie) => {
@@ -78,16 +95,16 @@ export default {
 
     <!-- Movies -->
     <div v-else class="container movies">
-      <!-- Searched Movies -->
-      <div v-if="searchInput !== ''" id="movie-grid" class="movies-grid">
-        <div v-for="(movie, index) in searchedMovies" :key="index">
+      <!-- All Movies -->
+      <div v-if="searchInput === ''" id="movie-grid" class="movies-grid">
+        <div v-for="(movie, index) in movies" :key="index">
           <MovieCard :movie="movie" />
         </div>
       </div>
 
-      <!-- All Movies -->
+      <!-- Searched Movies -->
       <div v-else id="movie-grid" class="movies-grid">
-        <div v-for="(movie, index) in movies" :key="index">
+        <div v-for="(movie, index) in searchedMovies" :key="index">
           <MovieCard :movie="movie" />
         </div>
       </div>
@@ -98,7 +115,7 @@ export default {
 <style lang="scss" scoped>
 .search {
   display: flex;
-  margin: 32px 0px 0px 32px;
+  margin-top: 32px;
 
   input {
     width: 100%;

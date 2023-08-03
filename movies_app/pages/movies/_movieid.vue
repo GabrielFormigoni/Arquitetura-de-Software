@@ -2,14 +2,20 @@
 import axios from 'axios'
 export default {
   name: 'MoviePage',
+  layout: 'default',
 
   data() {
     return {
-      movie: null,
+      movie: '',
     }
   },
   async fetch() {
     await this.getSingleMovie()
+  },
+  head() {
+    return {
+      title: this.movie.title,
+    }
   },
   fetchDelay: 1000,
   methods: {
@@ -26,27 +32,112 @@ export default {
 </script>
 
 <template>
+  <!-- Loading -->
   <Loader v-if="$fetchState.pending" />
 
-  <div v-else class="container single-movie">
-    <NuxtLink to="/" class="button">Back</NuxtLink>
-    <h1>{{ movie.title }}</h1>
-    <p>{{ movie.overview }}</p>
-    <img
-      :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`"
-      :alt="movie.title"
-      class="image"
-    />
+  <!-- Movie Info -->
+  <div v-else class="single-movie container">
+    <NuxtLink class="button" :to="{ name: 'index' }"> Back </NuxtLink>
+    <div class="movie-info">
+      <div class="movie-img">
+        <img
+          :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
+          alt=""
+        />
+      </div>
+      <div class="movie-content">
+        <h1>Title: {{ movie.title }}</h1>
+        <p v-if="movie.tagline.length !== 0" class="movie-fact tagline">
+          <span>Tagline:</span> "{{ movie.tagline }}"
+        </p>
+        <p class="movie-fact">
+          <span>Released:</span>
+          {{
+            new Date(movie.release_date).toLocaleString('en-us', {
+              month: 'long',
+              day: 'numeric',
+              year: 'numeric',
+            })
+          }}
+        </p>
+        <p class="movie-fact">
+          <span>Duration:</span> {{ movie.runtime }} minutes
+        </p>
+        <p class="movie-fact">
+          <span>Revenue:</span>
+          {{
+            movie.revenue.toLocaleString('en-us', {
+              style: 'currency',
+              currency: 'USD',
+            })
+          }}
+        </p>
+        <p class="movie-fact"><span>Overview:</span> {{ movie.overview }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
-<style lang="scss" scoped>
-.text {
-  color: red;
-}
+<style lang="scss">
+.single-movie {
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 32px 16px;
 
-.image {
-  width: 100%;
-  height: auto;
+  .button {
+    align-self: flex-start;
+    margin-bottom: 32px;
+  }
+
+  .movie-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    color: #fff;
+    @media (min-width: 800px) {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+    .movie-img {
+      img {
+        max-height: 500px;
+        width: 100%;
+
+        @media (min-width: 800px) {
+          max-height: 700px;
+          width: initial;
+        }
+      }
+    }
+
+    .movie-content {
+      h1 {
+        font-size: 56px;
+        font-weight: 400;
+      }
+
+      .movie-fact {
+        margin-top: 12px;
+        font-size: 20px;
+        line-height: 1.5;
+
+        span {
+          font-weight: 600;
+          text-decoration: underline;
+        }
+      }
+
+      .tagline {
+        font-style: italic;
+        span {
+          font-style: normal;
+        }
+      }
+    }
+  }
 }
 </style>
