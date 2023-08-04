@@ -82,7 +82,7 @@ export default {
       <input
         v-model.lazy="searchInput"
         type="text"
-        placeholder="Search..."
+        placeholder="Pesquisar..."
         @keyup.enter="$fetch"
       />
       <button v-show="searchInput !== ''" class="button" @click="clearSearch">
@@ -120,11 +120,12 @@ export default {
   input {
     width: 100%;
     max-width: 350px;
-    padding: 12px 6px;
+    padding: 12px 12px;
     border: none;
-    border-radius: 4px 0 0 4px;
+    border-radius: 4px;
     font-size: 1rem;
     outline: none;
+    margin-left: 2rem;
 
     &:focus {
       outline: none;

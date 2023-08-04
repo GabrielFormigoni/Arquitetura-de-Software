@@ -11,7 +11,7 @@ export default {
       <div class="text">
         <div class="mini-heading">Now Streaming</div>
         <h1><span>Now </span>Streaming</h1>
-        <a href="#movie-grid" class="button">View Movies</a>
+        <a href="#movie-grid" class="button">Ver Filmes</a>
       </div>
     </div>
   </div>
