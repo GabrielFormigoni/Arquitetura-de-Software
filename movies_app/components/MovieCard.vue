@@ -29,9 +29,9 @@ export default {
     <div class="movie-info">
       <p class="movie-title">{{ movie.title }}</p>
       <p class="movie-release">
-        Released:
+        Estreia:
         {{
-          new Date(movie.release_date).toLocaleString('en-us', {
+          new Date(movie.release_date).toLocaleString('pt-br', {
             month: 'long',
             day: 'numeric',
             year: 'numeric',
@@ -39,7 +39,7 @@ export default {
         }}
       </p>
       <NuxtLink :to="`/movies/${movie.id}`" class="button button-light">
-        View Details
+        Ver Detalhes
       </NuxtLink>
     </div>
   </div>

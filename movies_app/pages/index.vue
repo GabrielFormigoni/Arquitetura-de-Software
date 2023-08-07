@@ -10,9 +10,12 @@ export default {
       movies: [],
       searchedMovies: [],
       searchInput: '',
+      genresList: [],
+      genreId: '',
     }
   },
   async fetch() {
+    await this.getGenresList();
     if (this.searchInput === '') {
       await this.getMovies()
       return
@@ -38,6 +41,18 @@ export default {
     }
   },
   methods: {
+    async getGenresList() {
+      const data = await axios.get(
+        'https://api.themoviedb.org/3/genre/movie/list?api_key=d34a122b23be14518dbf126735740a98'
+      )
+      this.genresList = []
+      const response = await data.data.genres
+
+      response.forEach((genre) => {
+        this.genresList.push(genre)
+      })
+    },
+
     async getMovies() {
       const data = await axios.get(
         'https://api.themoviedb.org/3/movie/now_playing?api_key=d34a122b23be14518dbf126735740a98&language=en-US&page=1'
@@ -64,6 +79,20 @@ export default {
       })
     },
 
+    async filterByGenre() {
+      const data = await axios.get(
+        `https://api.themoviedb.org/3/discover/movie?api_key=d34a122b23be14518dbf126735740a98&with_genres=${this.genreId}`
+      )
+
+      const response = await data.data.results
+
+      this.searchedMovies = []
+
+      response.forEach((movie) => {
+        this.searchedMovies.push(movie)
+      })
+    },
+
     clearSearch() {
       this.searchInput = ''
       this.searchedMovies = []
@@ -76,20 +105,28 @@ export default {
   <div class="home">
     <!-- Hero -->
     <Hero />
+    <div class="container_flexbox">
+      <!-- Search -->
+      <div class="search">
+        <input
+          v-model.lazy="searchInput"
+          type="text"
+          placeholder="Pesquisar..."
+          @keyup.enter="$fetch"
+        />
+        <button v-show="searchInput !== ''" class="button" @click="clearSearch">
+          Clear Search
+        </button>
+      </div>
 
-    <!-- Search -->
-    <div class="container search">
-      <input
-        v-model.lazy="searchInput"
-        type="text"
-        placeholder="Pesquisar..."
-        @keyup.enter="$fetch"
-      />
-      <button v-show="searchInput !== ''" class="button" @click="clearSearch">
-        Clear Search
-      </button>
+      <!-- Filtro por gênero -->
+      <div>
+        <select v-model="genreId" @click="filterByGenre">
+          <option value="">Selecione um gênero</option>
+          <option v-for="genre in genresList" :key="genre.id">{{ genre.name }}</option>
+        </select>
+      </div>
     </div>
-
     <!-- Loading -->
     <Loader v-if="$fetchState.pending" />
 
@@ -113,19 +150,25 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+.container_flexbox {
+  display: flex;
+  align-items: center;
+  gap: 3em;
+  max-width: 1400px;
+  margin: 32px auto 0 18rem;
+}
+
 .search {
   display: flex;
-  margin-top: 32px;
 
   input {
-    width: 100%;
-    max-width: 350px;
+    width: 200px;
+    height: 45px;
     padding: 12px 12px;
     border: none;
     border-radius: 4px;
     font-size: 1rem;
     outline: none;
-    margin-left: 2rem;
 
     &:focus {
       outline: none;
@@ -141,6 +184,18 @@ export default {
 .movies {
   padding: 32px 0;
 }
+
+select {
+  height: 45px;
+  width: 200px;
+  padding: 12px 12px;
+  border-radius: 4px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
 .movies-grid {
   display: grid;
   padding: 0 16px;
