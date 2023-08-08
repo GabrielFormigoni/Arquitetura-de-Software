@@ -92,7 +92,6 @@ export default {
       const response = await data.data.results
 
       this.filteredMovies = []
-      console.log(response)
       response.forEach((movie) => {
         this.filteredMovies.push(movie)
       })
@@ -110,6 +109,7 @@ export default {
   <div class="home">
     <!-- Hero -->
     <Hero />
+
     <div class="container_flexbox">
       <!-- Search -->
       <div class="search">
@@ -128,7 +128,7 @@ export default {
       <div>
         <select v-model="genreId" @change="filterByGenre">
           <option value="">Todos os gêneros</option>
-          <option v-for="genre in genresList" :value="genre.id" :key="genre.id">
+          <option v-for="genre in genresList" :key="genre.id" :value="genre.id">
             {{ genre.name }}
           </option>
         </select>
@@ -173,8 +173,18 @@ export default {
   display: flex;
   align-items: center;
   gap: 3em;
-  max-width: 1400px;
-  margin: 32px auto 0 18rem;
+  max-width: 1335px;
+  margin: 1.5rem auto 0;
+
+  @media (max-width: 1400px) {
+    margin: 2rem;
+  }
+
+  @media (max-width: 750px) {
+    flex-direction: column;
+    margin: 1rem 0 0;
+    gap: 1rem;
+  }
 }
 
 .search {
@@ -209,6 +219,8 @@ select {
   width: 200px;
   padding: 12px 12px;
   border-radius: 4px;
+  border: none;
+  outline: none;
 
   &:focus {
     outline: none;
