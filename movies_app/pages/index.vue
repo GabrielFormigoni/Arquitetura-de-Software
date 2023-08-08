@@ -9,18 +9,23 @@ export default {
     return {
       movies: [],
       searchedMovies: [],
+      filteredMovies: [],
       searchInput: '',
       genresList: [],
       genreId: '',
     }
   },
   async fetch() {
-    await this.getGenresList();
-    if (this.searchInput === '') {
-      await this.getMovies()
+    await this.getGenresList()
+    if (this.searchInput !== '') {
+      await this.searchMovies()
       return
     }
-    await this.searchMovies()
+    if (this.genreId !== '') {
+      await this.filterByGenre()
+      return
+    }
+    await this.getMovies()
   },
   fetchDelay: 2000,
   head() {
@@ -86,10 +91,10 @@ export default {
 
       const response = await data.data.results
 
-      this.searchedMovies = []
-
+      this.filteredMovies = []
+      console.log(response)
       response.forEach((movie) => {
-        this.searchedMovies.push(movie)
+        this.filteredMovies.push(movie)
       })
     },
 
@@ -121,27 +126,41 @@ export default {
 
       <!-- Filtro por gênero -->
       <div>
-        <select v-model="genreId" @click="filterByGenre">
-          <option value="">Selecione um gênero</option>
-          <option v-for="genre in genresList" :key="genre.id">{{ genre.name }}</option>
+        <select v-model="genreId" @change="filterByGenre">
+          <option value="">Todos os gêneros</option>
+          <option v-for="genre in genresList" :value="genre.id" :key="genre.id">
+            {{ genre.name }}
+          </option>
         </select>
       </div>
     </div>
+
     <!-- Loading -->
     <Loader v-if="$fetchState.pending" />
 
     <!-- Movies -->
     <div v-else class="container movies">
       <!-- All Movies -->
-      <div v-if="searchInput === ''" id="movie-grid" class="movies-grid">
+      <div
+        v-if="searchInput === '' && genreId === ''"
+        id="movie-grid"
+        class="movies-grid"
+      >
         <div v-for="(movie, index) in movies" :key="index">
           <MovieCard :movie="movie" />
         </div>
       </div>
 
       <!-- Searched Movies -->
-      <div v-else id="movie-grid" class="movies-grid">
+      <div v-else-if="searchInput !== ''" id="movie-grid" class="movies-grid">
         <div v-for="(movie, index) in searchedMovies" :key="index">
+          <MovieCard :movie="movie" />
+        </div>
+      </div>
+
+      <!-- Filtered Movies -->
+      <div v-else-if="genreId !== ''" id="movie-grid" class="movies-grid">
+        <div v-for="(movie, index) in filteredMovies" :key="index">
           <MovieCard :movie="movie" />
         </div>
       </div>
