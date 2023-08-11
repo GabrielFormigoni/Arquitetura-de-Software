@@ -74,8 +74,9 @@ export default {
         </p>
         <p class="movie-fact"><span>Resumo:</span> {{ movie.overview }}</p>
         <p class="movie-fact"><span>Gêneros:</span></p>
-        <li v-for="item in movie.genres" :key="item.id">{{ item.name }}</li>
-        
+        <li v-for="item in movie.genres" :key="item.id" class="movie-fact">
+          {{ item.name }}
+        </li>
       </div>
     </div>
   </div>

@@ -10,8 +10,8 @@ export default {
       movies: [],
       searchedMovies: [],
       filteredMovies: [],
-      searchInput: '',
       genresList: [],
+      searchInput: '',
       genreId: '',
     }
   },
@@ -27,7 +27,7 @@ export default {
     }
     await this.getMovies()
   },
-  fetchDelay: 2000,
+  fetchDelay: 1500,
   head() {
     return {
       title: 'Movie App - Latest Movies Info',
@@ -86,7 +86,7 @@ export default {
 
     async filterByGenre() {
       const data = await axios.get(
-        `https://api.themoviedb.org/3/discover/movie?api_key=d34a122b23be14518dbf126735740a98&with_genres=${this.genreId}`
+        `https://api.themoviedb.org/3/discover/movie?api_key=d34a122b23be14518dbf126735740a98&with_genres=${this.genreId}&page=1`
       )
 
       const response = await data.data.results
@@ -126,7 +126,7 @@ export default {
 
       <!-- Filtro por gênero -->
       <div>
-        <select v-model="genreId" @change="filterByGenre">
+        <select v-model="genreId" @change="$fetch">
           <option value="">Todos os gêneros</option>
           <option v-for="genre in genresList" :key="genre.id" :value="genre.id">
             {{ genre.name }}
