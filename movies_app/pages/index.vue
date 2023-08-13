@@ -174,7 +174,7 @@ export default {
   align-items: center;
   gap: 3em;
   max-width: 1335px;
-  margin: 1.5rem auto 0;
+  margin: 2rem auto 1rem;
 
   @media (max-width: 1400px) {
     margin: 2rem;
@@ -244,4 +244,5 @@ select {
     align-items: center;
   }
 }
+
 </style>

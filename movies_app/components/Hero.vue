@@ -64,7 +64,7 @@ export default {
     .mini-heading {
       font-size: 1rem;
       font-weight: 500;
-      color: rgb(177, 14, 14);
+      color: #ba0c0c;
 
       @media screen and (min-width: 750px) {
         font-size: 1.5rem;
@@ -88,6 +88,13 @@ export default {
     .button {
       font-size: 20px;
       align-self: flex-start;
+      background-color: #ba0c0c;
+      color: rgba(255, 255, 255, 0.795);
+    }
+
+    .button:hover {
+      background-color: #df0f0f;
+      color: white;
     }
   }
 }

@@ -80,11 +80,16 @@ export default {
   font-weight: 500;
   opacity: 0.8;
   cursor: pointer;
+
+  background-color: #ba0c0c;
+  color: rgba(255, 255, 255, 0.76);
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
 }
 
 .navbar-item:hover {
-  color: #ba0c0c;
-  scale: 1.05;
-  transition: ease-in-out;
+  color: white;
+  background-color: #f00d0d;
+  transition: 500ms;
 }
 </style>
