@@ -1,20 +1,26 @@
 <script>
 export default {
   name: 'NavbarComponent',
+  methods: {
+    logout() {
+      this.$fire.auth.signOut()
+      this.$router.push('/auth/signin')
+    },
+  },
 }
 </script>
 
 <template>
   <nav class="navbar">
     <div class="navbar-brand">
-      <router-link to="/" class="navbar-logo">
+      <div class="navbar-logo">
         <img src="../assets//imgs/logo.png" alt="hero img" />
-      </router-link>
+      </div>
     </div>
     <div class="navbar-end">
-      <router-link to="/login" class="navbar-item"> Sign In </router-link>
+      <router-link to="/auth/signin" class="navbar-item"> Sign In </router-link>
       <div class="separator" />
-      <router-link to="/cadastro" class="navbar-item"> Sign Up </router-link>
+      <div class="navbar-item" @click="logout">Sign Out</div>
     </div>
   </nav>
 </template>
@@ -51,6 +57,7 @@ export default {
   margin: 0 10px;
   font-weight: 500;
   opacity: 0.8;
+  cursor: pointer;
 }
 
 .navbar-item:hover {

@@ -1,8 +1,5 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
-  
-  mode: 'spa',
-  
   head: {
     title: 'nuxtmovieapp',
     htmlAttrs: {
@@ -32,29 +29,37 @@ export default {
     '@nuxtjs/eslint-module',
   ],
 
+  router: {
+    middleware: ['auth'],
+  },
+
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    ['@nuxtjs/firebase',
+    [
+      '@nuxtjs/firebase',
       {
         config: {
-          apiKey: "AIzaSyAQ62eMm7g8GbZoHDCxfrVl-9Ho4NKFlbA",
-          authDomain: "filmesia-ae56e.firebaseapp.com",
-          projectId: "filmesia-ae56e",
-          storageBucket: "filmesia-ae56e.appspot.com",
-          messagingSenderId: "950077564302",
-          appId: "1:950077564302:web:745f87d8628eb28121f0df",
-          measurementId: "G-R2NZHY8W5H"
+          apiKey: 'AIzaSyC6Jxef1pGAjYepflc6pfiPN9CBO583dkI',
+          authDomain: 'movies-1a1d5.firebaseapp.com',
+          projectId: 'movies-1a1d5',
+          storageBucket: 'movies-1a1d5.appspot.com',
+          messagingSenderId: '923215263225',
+          appId: '1:923215263225:web:963184d550c63f99dcb928',
         },
         services: {
           auth: {
-            onAuthStateMutation: 'ON_AUTH_STATE_CHANGED_MUTATION',
-            onAuthStateAction: 'onAuthStateChangedAction'
-          }
-        }
-      }
-    ]
+            persistence: 'local', // default
+            initialize: {
+              onAuthStateChangedAction: 'onAuthStateChangedAction',
+              subscribeManually: false,
+            },
+            ssr: false, // default
+          },
+        },
+      },
+    ],
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
