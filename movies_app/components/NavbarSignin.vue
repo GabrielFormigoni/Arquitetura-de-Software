@@ -47,7 +47,7 @@ export default {
 
 .navbar-logo p{
   font-family: 'Rubik';
-  margin-left: 2px;
+  margin-left: 8px;
 }
 .navbar-end {
   display: flex;
