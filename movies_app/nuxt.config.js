@@ -1,5 +1,8 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  
+  mode: 'spa',
+  
   head: {
     title: 'nuxtmovieapp',
     htmlAttrs: {
@@ -33,6 +36,25 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    ['@nuxtjs/firebase',
+      {
+        config: {
+          apiKey: "AIzaSyAQ62eMm7g8GbZoHDCxfrVl-9Ho4NKFlbA",
+          authDomain: "filmesia-ae56e.firebaseapp.com",
+          projectId: "filmesia-ae56e",
+          storageBucket: "filmesia-ae56e.appspot.com",
+          messagingSenderId: "950077564302",
+          appId: "1:950077564302:web:745f87d8628eb28121f0df",
+          measurementId: "G-R2NZHY8W5H"
+        },
+        services: {
+          auth: {
+            onAuthStateMutation: 'ON_AUTH_STATE_CHANGED_MUTATION',
+            onAuthStateAction: 'onAuthStateChangedAction'
+          }
+        }
+      }
+    ]
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
