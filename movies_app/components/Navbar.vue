@@ -31,6 +31,10 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width:320px) {
+    display: block;
+  }
 }
 
 .separator {
@@ -46,6 +50,10 @@ export default {
   align-items: center;
   color: #ba0c0c;
   font-size: 50px;
+
+  @media (max-width:320px) {
+    margin-top: 1rem;
+  }
 }
 
 .navbar-logo p{
@@ -54,6 +62,12 @@ export default {
 .navbar-end {
   display: flex;
   align-items: center;
+
+  @media (max-width:320px) {
+    position: absolute;
+    left: 80%;
+    top: 2%;
+  }
 }
 
 

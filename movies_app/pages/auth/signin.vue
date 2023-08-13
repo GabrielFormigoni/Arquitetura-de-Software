@@ -70,6 +70,10 @@ export default {
       color: white;
       margin-bottom: 4rem;
       font-family: 'Rubik';
+
+      @media (max-width:320px) {
+        font-size: 3rem;
+      }
     }
 
     input {
@@ -81,6 +85,10 @@ export default {
       background-color: #211f1f;
       padding: 0 1rem;
       font-size: 1rem;
+
+      @media (max-width:320px) {
+        width: 200px;
+      }
     }
 
     button {
@@ -95,6 +103,10 @@ export default {
       background-color: #ba0c0c;
       cursor: pointer;
       margin-top: 1rem;
+
+      @media (max-width:320px) {
+        width: 200px;
+      }
     }
 
     button:hover {

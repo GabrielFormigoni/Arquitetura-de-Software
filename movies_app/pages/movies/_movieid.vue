@@ -107,6 +107,7 @@ export default {
       flex-direction: row;
       align-items: flex-start;
     }
+
     .movie-img {
       img {
         max-height: 500px;
@@ -123,6 +124,11 @@ export default {
       h1 {
         font-size: 56px;
         font-weight: 400;
+        
+        @media (max-width:320px) {
+          font-size: 36px;
+        }
+    
       }
 
       .movie-fact {
@@ -141,6 +147,9 @@ export default {
         span {
           font-style: normal;
         }
+      }
+      @media (max-width:320px) {
+        width: 95%;
       }
     }
   }
