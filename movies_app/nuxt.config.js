@@ -1,5 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+
+  target: 'static',
   head: {
     title: 'nuxtmovieapp',
     htmlAttrs: {
@@ -32,11 +34,11 @@ export default {
 
   googleFonts: {
     families: {
-      Inter: [300,500,700],
+      Inter: [300, 500, 700],
       Merriweather: [400],
       Caprasimo: [400],
       Rubik: [300],
-    }
+    },
   },
 
   router: {
@@ -70,7 +72,9 @@ export default {
         },
       },
     ],
-    ['@nuxtjs/google-fonts', {
+    [
+      '@nuxtjs/google-fonts',
+      {
         families: {
           Roboto: true,
           Inter: [400, 700],
@@ -78,11 +82,12 @@ export default {
           Lato: [100, 300],
           Raleway: {
             wght: [100, 400],
-            ital: [100]
+            ital: [100],
           },
           Caparismo: [400],
-        }
-    }],
+        },
+      },
+    ],
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
