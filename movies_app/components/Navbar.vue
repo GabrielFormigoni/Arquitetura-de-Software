@@ -14,7 +14,7 @@ export default {
   <nav class="navbar">
     <div class="navbar-brand">
       <div class="navbar-logo">
-        <img src="../assets/imgs/popcorn-svgrepo-com.svg" alt="">
+        <img src="../assets/imgs/clapperboard.svg" alt="">
         <p>FilmesIA</p>
       </div>
     </div>

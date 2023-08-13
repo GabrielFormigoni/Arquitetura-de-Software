@@ -65,7 +65,7 @@ export default {
     background-color: rgb(51, 51, 51);
 
     h1 {
-      font-size: 5rem;
+      font-size: 4rem;
       font-weight: 300;
       color: white;
       margin-bottom: 4rem;
@@ -77,7 +77,7 @@ export default {
     }
 
     input {
-      width: 400px;
+      width: 300px;
       height: 40px;
       border-radius: 5px;
       border: none;
@@ -85,6 +85,10 @@ export default {
       background-color: #211f1f;
       padding: 0 1rem;
       font-size: 1rem;
+      
+      &:focus {
+        outline: 1px solid #ba0c0c;
+      }
 
       @media (max-width:320px) {
         width: 200px;
@@ -92,8 +96,8 @@ export default {
     }
 
     button {
-      width: 400px;
-      height: 60px;
+      width: 300px;
+      height: 50px;
       border-radius: 5px;
       border: 1px solid #ba0c0c;
       color: rgba(255, 255, 255, 0.712);

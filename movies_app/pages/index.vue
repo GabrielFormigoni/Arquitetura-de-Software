@@ -198,6 +198,7 @@ export default {
     border-radius: 4px;
     font-size: 1rem;
     outline: none;
+    background-color: rgb(240, 240, 240);
 
     &:focus {
       outline: none;
@@ -221,6 +222,7 @@ select {
   border-radius: 4px;
   border: none;
   outline: none;
+  background-color: rgb(240, 240, 240);
 
   &:focus {
     outline: none;
