@@ -1,7 +1,6 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
 
-  target: 'static',
   head: {
     title: 'nuxtmovieapp',
     htmlAttrs: {
@@ -97,5 +96,7 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    buildDir: 'dist',
+  },
 }
