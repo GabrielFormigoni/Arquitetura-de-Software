@@ -13,7 +13,7 @@
 export default {
   layout: 
   'signin',
-  
+
   data() {
     return {
       snackbar: false,
@@ -88,7 +88,7 @@ export default {
       height: 60px;
       border-radius: 5px;
       border: 1px solid #ba0c0c;
-      color: white;
+      color: rgba(255, 255, 255, 0.712);
       padding: 0 1rem;
       font-size: 2rem;
       font-weight: bold;
@@ -100,6 +100,7 @@ export default {
     button:hover {
       background-color: #df0f0f;
       transition: 500ms;
+      color: white;
     }
   }
 }
