@@ -27,7 +27,17 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
+    '@nuxtjs/google-fonts',
   ],
+
+  googleFonts: {
+    families: {
+      Inter: [300,500,700],
+      Merriweather: [400],
+      Caprasimo: [400],
+      Rubik: [300],
+    }
+  },
 
   router: {
     middleware: ['auth'],
@@ -60,6 +70,19 @@ export default {
         },
       },
     ],
+    ['@nuxtjs/google-fonts', {
+        families: {
+          Roboto: true,
+          Inter: [400, 700],
+          'Josefin+Sans': true,
+          Lato: [100, 300],
+          Raleway: {
+            wght: [100, 400],
+            ital: [100]
+          },
+          Caparismo: [400],
+        }
+    }],
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

@@ -18,9 +18,6 @@ export default {
         <p>FilmesIA</p>
       </div>
     </div>
-    <div class="navbar-end">
-      <div class="navbar-item" @click="logout">Sair</div>
-    </div>
   </nav>
 </template>
 
