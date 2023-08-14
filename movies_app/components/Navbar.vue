@@ -15,7 +15,7 @@ export default {
     <div class="navbar-brand">
       <div class="navbar-logo">
         <img src="../assets/imgs/clapperboard.svg" alt="">
-        <p>MoviesAI</p>
+        <p>MoviesRec</p>
       </div>
     </div>
     <div class="navbar-end">
