@@ -5,14 +5,14 @@
       <input v-model="auth.email" type="email" placeholder="Email" />
       <input v-model="auth.password" type="password" placeholder="Password" />
       <button @click="login">Entrar</button>
+      <p v-if="snackbar === true" class="error-text">{{ snackbarText }}</p>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  layout: 
-  'signin',
+  layout: 'signin',
 
   data() {
     return {
@@ -26,12 +26,13 @@ export default {
   },
   methods: {
     login() {
+      this.snackbar = false
       const that = this
       this.$fire.auth
         .signInWithEmailAndPassword(this.auth.email, this.auth.password)
         .catch(function (error) {
-          that.snackbarText = error.message
           that.snackbar = true
+          that.snackbarText = error.message
         })
         .then((user) => {
           // we are signed in
@@ -71,7 +72,7 @@ export default {
       margin-bottom: 4rem;
       font-family: 'Rubik';
 
-      @media (max-width:320px) {
+      @media (max-width: 320px) {
         font-size: 3rem;
       }
     }
@@ -85,12 +86,12 @@ export default {
       background-color: #211f1f;
       padding: 0 1rem;
       font-size: 1rem;
-      
+
       &:focus {
         outline: 1px solid #ba0c0c;
       }
 
-      @media (max-width:320px) {
+      @media (max-width: 320px) {
         width: 200px;
       }
     }
@@ -108,7 +109,7 @@ export default {
       cursor: pointer;
       margin-top: 1rem;
 
-      @media (max-width:320px) {
+      @media (max-width: 320px) {
         width: 200px;
       }
     }
@@ -118,6 +119,13 @@ export default {
       transition: 500ms;
       color: white;
     }
+  }
+
+  .error-text {
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 1rem;
   }
 }
 </style>
