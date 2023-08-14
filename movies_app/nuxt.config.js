@@ -3,7 +3,7 @@ export default {
 
   target: 'static',
   head: {
-    title: 'nuxtmovieapp',
+    title: 'MoviesRec',
     htmlAttrs: {
       lang: 'en',
     },
