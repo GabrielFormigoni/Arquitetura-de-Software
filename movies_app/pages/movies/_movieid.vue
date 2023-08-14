@@ -37,7 +37,7 @@ export default {
 
   <!-- Movie Info -->
   <div v-else class="single-movie container">
-    <NuxtLink class="button" :to="{ name: 'index' }"> Back </NuxtLink>
+    <NuxtLink class="button" :to="{ name: 'index' }"> Voltar </NuxtLink>
     <div class="movie-info">
       <div class="movie-img">
         <img
@@ -46,12 +46,12 @@ export default {
         />
       </div>
       <div class="movie-content">
-        <h1>Título: {{ movie.title }}</h1>
+        <h1>Title: {{ movie.title }}</h1>
         <p v-if="movie.tagline.length !== 0" class="movie-fact tagline">
           <span>Mote:</span> "{{ movie.tagline }}"
         </p>
         <p class="movie-fact">
-          <span>Estreia:</span>
+          <span>Release Date:</span>
           {{
             new Date(movie.release_date).toLocaleString('pt-br', {
               month: 'long',
@@ -61,10 +61,10 @@ export default {
           }}
         </p>
         <p class="movie-fact">
-          <span>Duração:</span> {{ movie.runtime }} minutes
+          <span>Duration:</span> {{ movie.runtime }} minutes
         </p>
         <p class="movie-fact">
-          <span>Bilheteria:</span>
+          <span>Revenue:</span>
           {{
             movie.revenue.toLocaleString('en-us', {
               style: 'currency',
@@ -72,8 +72,8 @@ export default {
             })
           }}
         </p>
-        <p class="movie-fact"><span>Resumo:</span> {{ movie.overview }}</p>
-        <p class="movie-fact"><span>Gêneros:</span></p>
+        <p class="movie-fact"><span>Overview:</span> {{ movie.overview }}</p>
+        <p class="movie-fact"><span>Genres:</span></p>
         <li v-for="item in movie.genres" :key="item.id" class="movie-fact">
           {{ item.name }}
         </li>

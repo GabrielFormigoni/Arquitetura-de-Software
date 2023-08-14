@@ -4,7 +4,7 @@
       <h1>Login</h1>
       <input v-model="auth.email" type="email" placeholder="Email" />
       <input v-model="auth.password" type="password" placeholder="Password" />
-      <button @click="login">Entrar</button>
+      <button @click="login">Enter</button>
       <p v-if="snackbar === true" class="error-text">{{ snackbarText }}</p>
     </div>
   </div>

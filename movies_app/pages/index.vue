@@ -116,7 +116,7 @@ export default {
         <input
           v-model.lazy="searchInput"
           type="text"
-          placeholder="Pesquisar..."
+          placeholder="Search..."
           @keyup.enter="$fetch"
         />
         <button v-show="searchInput !== ''" class="button" @click="clearSearch">
@@ -127,7 +127,7 @@ export default {
       <!-- Filtro por gênero -->
       <div>
         <select v-model="genreId" @change="$fetch">
-          <option value="">Todos os gêneros</option>
+          <option value="">All genres</option>
           <option v-for="genre in genresList" :key="genre.id" :value="genre.id">
             {{ genre.name }}
           </option>

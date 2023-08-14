@@ -15,11 +15,11 @@ export default {
     <div class="navbar-brand">
       <div class="navbar-logo">
         <img src="../assets/imgs/clapperboard.svg" alt="">
-        <p>FilmesIA</p>
+        <p>MoviesAI</p>
       </div>
     </div>
     <div class="navbar-end">
-      <div class="navbar-item" @click="logout">Sair</div>
+      <div class="navbar-item" @click="logout">Sign Out</div>
     </div>
   </nav>
 </template>
