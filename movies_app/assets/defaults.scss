@@ -30,13 +30,14 @@
   padding: 8px 16px;
   background-color: #ba0c0c;
   border: none;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.705);
   border-radius: 4px;
   cursor: pointer;
   transition: 0.3s ease all;
 
   &:hover {
     background-color: #df0f0f;
+    color: white;
   }
 }
 
