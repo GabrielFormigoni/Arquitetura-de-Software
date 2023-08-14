@@ -37,7 +37,7 @@ export default {
 
   <!-- Movie Info -->
   <div v-else class="single-movie container">
-    <NuxtLink class="button" :to="{ name: 'index' }"> Voltar </NuxtLink>
+    <NuxtLink class="button" :to="{ name: 'index' }"> Back </NuxtLink>
     <div class="movie-info">
       <div class="movie-img">
         <img
@@ -48,7 +48,7 @@ export default {
       <div class="movie-content">
         <h1>Title: {{ movie.title }}</h1>
         <p v-if="movie.tagline.length !== 0" class="movie-fact tagline">
-          <span>Mote:</span> "{{ movie.tagline }}"
+          <span>Tagline:</span> "{{ movie.tagline }}"
         </p>
         <p class="movie-fact">
           <span>Release Date:</span>
