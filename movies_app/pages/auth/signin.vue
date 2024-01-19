@@ -1,11 +1,24 @@
 <template>
   <div class="form-container">
     <div class="card">
-      <h1>Login</h1>
+      <h1 v-if="!isRegister">Login</h1>
+      <h1 v-if="isRegister">Register</h1>
+
       <input v-model="auth.email" type="email" placeholder="Email" />
       <input v-model="auth.password" type="password" placeholder="Password" />
-      <button @click="login">Enter</button>
+
+      <button v-if="!isRegister" @click="login">Enter</button>
+      <button v-if="isRegister" @click="register">Register</button>
+
       <p v-if="snackbar === true" class="error-text">{{ snackbarText }}</p>
+
+      <span @click="toggleAuthMode" class="auth-toggle">
+        {{
+          isRegister
+            ? 'Already have an account? Login'
+            : "Don't have an account? Register"
+        }}
+      </span>
     </div>
   </div>
 </template>
@@ -16,6 +29,7 @@ export default {
 
   data() {
     return {
+      isRegister: false,
       snackbar: false,
       snackbarText: 'No error message',
       auth: {
@@ -25,6 +39,9 @@ export default {
     }
   },
   methods: {
+    toggleAuthMode() {
+      this.isRegister = !this.isRegister
+    },
     login() {
       this.snackbar = false
       const that = this
@@ -36,6 +53,24 @@ export default {
         })
         .then((user) => {
           // we are signed in
+          if (user) {
+            that.$router.push('/')
+          }
+        })
+    },
+    register() {
+      this.snackbar = false
+      const that = this
+
+      // Usando o método createUserWithEmailAndPassword para registrar um novo usuário
+      this.$fire.auth
+        .createUserWithEmailAndPassword(this.auth.email, this.auth.password)
+        .catch(function (error) {
+          that.snackbar = true
+          that.snackbarText = error.message
+        })
+        .then((user) => {
+          // O usuário foi registrado com sucesso
           if (user) {
             that.$router.push('/')
           }
@@ -126,6 +161,14 @@ export default {
     font-size: 1rem;
     font-weight: bold;
     margin-top: 1rem;
+  }
+
+  .auth-toggle {
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    cursor: pointer;
   }
 }
 </style>
